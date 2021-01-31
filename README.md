@@ -1,1 +1,1 @@
-# WeatherApp
+**A simple Weather App**

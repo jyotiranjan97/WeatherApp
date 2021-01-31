@@ -37,6 +37,7 @@ function App() {
         maxTemp: convertTemp(response.main.temp_max),
         windSpeed: response.wind.speed,
         windDir: convertWindDirection(response.wind.deg),
+        weatherType: response.weather[0].main,
       });
       setDataReceived(true);
     };

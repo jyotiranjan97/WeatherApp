@@ -5,3 +5,8 @@
   flex-direction: column;
   background-color: lightblue;
 }
+
+.weatherReport {
+  display: flex;
+  flex-direction: row;
+}

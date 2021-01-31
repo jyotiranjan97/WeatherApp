@@ -1,6 +1,5 @@
 import React from "react";
 import "./WeatherCard.css";
-import { WiDayCloudy } from "weather-icons-react";
 import WeatherDetails from "./WeatherDetails";
 
 function WeatherCard(props) {
@@ -10,7 +9,10 @@ function WeatherCard(props) {
       <h1>{props.apiData.temp}&deg;</h1>
       <div className="weatherReport">
         <span>
-          <WiDayCloudy size={100} color="black" />
+          <img
+            src={`http://openweathermap.org/img/wn/${props.apiData.icon}@2x.png`}
+            alt="Loading"
+          />
         </span>
         <span>{props.apiData.weatherType}</span>
       </div>

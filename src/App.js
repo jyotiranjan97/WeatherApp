@@ -38,10 +38,12 @@ function App() {
         windSpeed: response.wind.speed,
         windDir: convertWindDirection(response.wind.deg),
         weatherType: response.weather[0].main,
+        icon: response.weather[0].icon,
       });
       setDataReceived(true);
     };
     getApiData();
+    console.log(apiResData.icon);
   }, []);
 
   return (

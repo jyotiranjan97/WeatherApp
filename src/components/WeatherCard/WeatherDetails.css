@@ -1,0 +1,9 @@
+.weather {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.span {
+  margin: 20px;
+}

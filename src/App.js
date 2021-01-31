@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import SearchBar from "./components/SearchBar/SearchBar";
 import WeatherCard from "./components/WeatherCard/WeatherCard";
-
-const API_KEY = "3f45dd007bd05f80d901ed1cae04d0ba";
+import { API_KEY } from "../src/APIKey";
 
 function App() {
   const [apiResData, setApiResData] = useState({});

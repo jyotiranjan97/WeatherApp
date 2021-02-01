@@ -9,6 +9,7 @@ function WeatherCard(props) {
         {props.apiData.city}
       </h1>
       <h1>{props.apiData.temp}&deg;</h1>
+      <p>feels like {props.apiData.feelsLike}&deg;</p>
       <div className="weatherReport">
         <span>
           <img

@@ -33,6 +33,7 @@ function App() {
       setApiResData({
         city: response.name + ", " + response.sys.country,
         temp: convertTemp(response.main.temp),
+        feelsLike: convertTemp(response.main.feels_like),
         minTemp: convertTemp(response.main.temp_min),
         maxTemp: convertTemp(response.main.temp_max),
         windSpeed: response.wind.speed,
@@ -54,6 +55,7 @@ function App() {
     setApiResData({
       city: response.name + ", " + response.sys.country,
       temp: convertTemp(response.main.temp),
+      feelsLike: convertTemp(response.main.feels_like),
       minTemp: convertTemp(response.main.temp_min),
       maxTemp: convertTemp(response.main.temp_max),
       windSpeed: response.wind.speed,

@@ -5,7 +5,9 @@ import WeatherDetails from "./WeatherDetails";
 function WeatherCard(props) {
   return (
     <div className="weatherCard">
-      <h1 className="city">{props.apiData.city}</h1>
+      <h1 className="city" name="city">
+        {props.apiData.city}
+      </h1>
       <h1>{props.apiData.temp}&deg;</h1>
       <div className="weatherReport">
         <span>

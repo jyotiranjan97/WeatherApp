@@ -5,6 +5,7 @@
   margin: 0 auto;
   justify-content: center;
   align-items: center;
+  box-shadow: 10px 5px 5px rgb(212, 135, 47);
 }
 
 .h1 {

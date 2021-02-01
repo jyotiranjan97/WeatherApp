@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchBar.css";
-import pic from "../../images/search.png";
 
-function SearchBar() {
+function SearchBar(props) {
+  const [cityName, setCityName] = useState("");
+
+  const onChangeHandler = (event) => {
+    setCityName(event.target.value);
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    props.loadWeather(cityName);
+  };
+
   return (
-    <div className="SearchBar">
-      <input className="input" type="city" placeholder="Enter the City Name" />
-      <img src={pic} alt="search" type="image/png" className="image" />
+    <div>
+      <form onSubmit={submitHandler} className="SearchBar">
+        <input
+          className="input"
+          type="city"
+          value={cityName}
+          onChange={(event) => onChangeHandler(event)}
+          placeholder="Enter the City Name"
+        />
+        <button className="button">
+          <p>Search</p>
+        </button>
+      </form>
     </div>
   );
 }

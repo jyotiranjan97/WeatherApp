@@ -13,10 +13,10 @@
   justify-content: center;
 }
 
-.image {
-  background-color: white;
+.button {
+  background-color: darkorange;
   border-radius: 0px 5px 5px 0px;
-  height: 60px;
-  width: 60px;
-  z-index: 5;
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-around;
 }

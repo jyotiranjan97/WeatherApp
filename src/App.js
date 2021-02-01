@@ -31,7 +31,7 @@ function App() {
       const response = await apiData.json();
       console.log(response);
       setApiResData({
-        city: response.name,
+        city: response.name + ", " + response.sys.country,
         temp: convertTemp(response.main.temp),
         minTemp: convertTemp(response.main.temp_min),
         maxTemp: convertTemp(response.main.temp_max),
@@ -43,13 +43,31 @@ function App() {
       setDataReceived(true);
     };
     getApiData();
-    console.log(apiResData.icon);
   }, []);
+
+  const getWeatherDetails = async (cityname) => {
+    const apiData = await fetch(
+      `http://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=${API_KEY}`
+    );
+    const response = await apiData.json();
+    console.log(response);
+    setApiResData({
+      city: response.name + ", " + response.sys.country,
+      temp: convertTemp(response.main.temp),
+      minTemp: convertTemp(response.main.temp_min),
+      maxTemp: convertTemp(response.main.temp_max),
+      windSpeed: response.wind.speed,
+      windDir: convertWindDirection(response.wind.deg),
+      weatherType: response.weather[0].main,
+      icon: response.weather[0].icon,
+    });
+    setDataReceived(true);
+  };
 
   return (
     <div className="App">
       <h1 className="h1">Weather</h1>
-      <SearchBar />
+      <SearchBar loadWeather={(event) => getWeatherDetails(event)} />
       {dataReceived === true ? <WeatherCard apiData={apiResData} /> : "Loading"}
     </div>
   );

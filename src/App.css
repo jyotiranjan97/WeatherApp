@@ -9,10 +9,21 @@
 }
 
 .h1 {
-  color: black;
+  color: white;
+  font-size: 40px;
   padding: 0.5em;
 }
 
 .spinner {
   padding: 80px;
+}
+
+.glass {
+  padding-top: 20px;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.3)
+  );
 }

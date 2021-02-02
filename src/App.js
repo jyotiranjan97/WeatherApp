@@ -49,8 +49,7 @@ function App() {
 
   const getWeatherDetails = async (cityname) => {
     setDataReceived(false);
-    const city_name = "" ? "London" : cityname;
-    console.log(city_name);
+    const city_name = cityname === "" ? "London" : cityname;
     fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=${API_KEY}`
     )
@@ -77,14 +76,16 @@ function App() {
   return (
     <div className="App">
       <h1 className="h1">Weather</h1>
-      <SearchBar loadWeather={(event) => getWeatherDetails(event)} />
-      {dataReceived === true ? (
-        <WeatherCard apiData={apiResData} />
-      ) : (
-        <div className="spinner">
-          <Spinner />
-        </div>
-      )}
+      <div className="glass">
+        <SearchBar loadWeather={(event) => getWeatherDetails(event)} />
+        {dataReceived === true ? (
+          <WeatherCard apiData={apiResData} />
+        ) : (
+          <div className="spinner">
+            <Spinner />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

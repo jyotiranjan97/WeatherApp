@@ -3,6 +3,7 @@ import "./App.css";
 import SearchBar from "./components/SearchBar/SearchBar";
 import WeatherCard from "./components/WeatherCard/WeatherCard";
 import { API_KEY } from "../src/APIKey";
+import Spinner from "./components/UI/Spinner";
 
 function App() {
   const [apiResData, setApiResData] = useState({});
@@ -47,30 +48,43 @@ function App() {
   }, []);
 
   const getWeatherDetails = async (cityname) => {
-    const apiData = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=${API_KEY}`
-    );
-    const response = await apiData.json();
-    console.log(response);
-    setApiResData({
-      city: response.name + ", " + response.sys.country,
-      temp: convertTemp(response.main.temp),
-      feelsLike: convertTemp(response.main.feels_like),
-      minTemp: convertTemp(response.main.temp_min),
-      maxTemp: convertTemp(response.main.temp_max),
-      windSpeed: response.wind.speed,
-      windDir: convertWindDirection(response.wind.deg),
-      weatherType: response.weather[0].main,
-      icon: response.weather[0].icon,
-    });
-    setDataReceived(true);
+    setDataReceived(false);
+    const city_name = "" ? "London" : cityname;
+    console.log(city_name);
+    fetch(
+      `http://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=${API_KEY}`
+    )
+      .then((response) => response.json())
+      .then((responseData) => {
+        setApiResData({
+          city: responseData.name + ", " + responseData.sys.country,
+          temp: convertTemp(responseData.main.temp),
+          feelsLike: convertTemp(responseData.main.feels_like),
+          minTemp: convertTemp(responseData.main.temp_min),
+          maxTemp: convertTemp(responseData.main.temp_max),
+          windSpeed: responseData.wind.speed,
+          windDir: convertWindDirection(responseData.wind.deg),
+          weatherType: responseData.weather[0].main,
+          icon: responseData.weather[0].icon,
+        });
+        setDataReceived(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <div className="App">
       <h1 className="h1">Weather</h1>
       <SearchBar loadWeather={(event) => getWeatherDetails(event)} />
-      {dataReceived === true ? <WeatherCard apiData={apiResData} /> : "Loading"}
+      {dataReceived === true ? (
+        <WeatherCard apiData={apiResData} />
+      ) : (
+        <div className="spinner">
+          <Spinner />
+        </div>
+      )}
     </div>
   );
 }

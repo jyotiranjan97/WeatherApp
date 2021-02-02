@@ -4,6 +4,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import WeatherCard from "./components/WeatherCard/WeatherCard";
 import { API_KEY } from "../src/APIKey";
 import Spinner from "./components/UI/Spinner";
+import pic from "./images/sun.png";
 
 function App() {
   const [apiResData, setApiResData] = useState({});
@@ -75,7 +76,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="h1">Weather</h1>
+      <h1 className="h1">
+        Weather<img className="img" src={pic} alt=""></img>
+      </h1>
       <div className="glass">
         <SearchBar loadWeather={(event) => getWeatherDetails(event)} />
         {dataReceived === true ? (

@@ -21,10 +21,10 @@ function SearchBar(props) {
           type="city"
           value={cityName}
           onChange={(event) => onChangeHandler(event)}
-          placeholder="Enter the City Name"
+          placeholder="Enter the City"
         />
         <button className="button">
-          <p>Search</p>
+          <p style={{ color: "white", fontWeight: 650 }}>Search</p>
         </button>
       </form>
     </div>

@@ -5,14 +5,13 @@ function WeatherDetails(props) {
   return (
     <div className="weather">
       <span className="span">
-        <div>Wind Speed</div>
+        <h4>Wind Speed</h4>
         <div>
-          {" "}
           {props.apiData.windDir} {props.apiData.windSpeed} Km/hr
         </div>
       </span>
       <span className="span">
-        <div>Min/Max Temp</div>
+        <h4>Min/Max Temp</h4>
         <div>
           {props.apiData.minTemp}&deg;/{props.apiData.maxTemp}&deg;
         </div>

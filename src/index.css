@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #e3ac22e4;
+  background-image: url("./images/mountains.jpeg");
+  background-size: cover;
 }
 
 code {

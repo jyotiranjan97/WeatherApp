@@ -1,14 +1,18 @@
 .App {
   text-align: center;
-  background-color: orange;
+  background-color: transparent;
   width: 80%;
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  box-shadow: 10px 5px 5px rgb(212, 135, 47);
+  padding-bottom: 40px;
 }
 
 .h1 {
   color: black;
   padding: 0.5em;
+}
+
+.spinner {
+  padding: 80px;
 }

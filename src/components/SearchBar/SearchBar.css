@@ -1,7 +1,7 @@
 .input {
   font-size: 20px;
   width: 60%;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 5px;
   border: 0px;
   text-align: center;
 }
@@ -14,8 +14,8 @@
 }
 
 .button {
-  background-color: darkorange;
-  border-radius: 0px 5px 5px 0px;
+  background-color: rgb(23, 23, 189);
+  border-radius: 5px;
   margin-left: 10px;
   display: flex;
   justify-content: space-around;

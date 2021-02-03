@@ -51,7 +51,7 @@ function App() {
     setDataReceived(false);
     const city_name = cityname === "" ? "London" : cityname;
     fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=${API_KEY}`
+      `http://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=3f45dd007bd05f80d901ed1cae04d0ba`
     )
       .then((response) => response.json())
       .then((responseData) => {

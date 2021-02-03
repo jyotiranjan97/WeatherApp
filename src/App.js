@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import SearchBar from "./components/SearchBar/SearchBar";
 import WeatherCard from "./components/WeatherCard/WeatherCard";
-import { API_KEY } from "../src/APIKey";
 import Spinner from "./components/UI/Spinner";
 import pic from "./images/sun.png";
 
@@ -28,7 +27,7 @@ function App() {
   useEffect(() => {
     const getApiData = async () => {
       const apiData = await fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=London&appid=${API_KEY}`
+        `http://api.openweathermap.org/data/2.5/weather?q=London&appid=3f45dd007bd05f80d901ed1cae04d0ba`
       );
       const response = await apiData.json();
       console.log(response);

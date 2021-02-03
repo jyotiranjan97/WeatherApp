@@ -27,7 +27,7 @@ function App() {
   useEffect(() => {
     const getApiData = async () => {
       const apiData = await fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=London&appid=3f45dd007bd05f80d901ed1cae04d0ba`
+        `https://api.openweathermap.org/data/2.5/weather?q=London&appid=3f45dd007bd05f80d901ed1cae04d0ba`
       );
       const response = await apiData.json();
       console.log(response);
@@ -51,7 +51,7 @@ function App() {
     setDataReceived(false);
     const city_name = cityname === "" ? "London" : cityname;
     fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=3f45dd007bd05f80d901ed1cae04d0ba`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=3f45dd007bd05f80d901ed1cae04d0ba`
     )
       .then((response) => response.json())
       .then((responseData) => {

@@ -1,0 +1,16 @@
+.noResults {
+  background-color: brown;
+}
+
+.note {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 3px black;
+}
+
+.image {
+  width: 70%;
+  height: 250px;
+  padding: 40px;
+}

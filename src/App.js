@@ -4,10 +4,12 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import WeatherCard from "./components/WeatherCard/WeatherCard";
 import Spinner from "./components/UI/Spinner";
 import pic from "./images/sun.png";
+import NoResults from "./components/UI/NoResults";
 
 function App() {
   const [apiResData, setApiResData] = useState({});
   const [dataReceived, setDataReceived] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const convertTemp = (temp) => {
     return Math.floor(temp - 273.15);
@@ -25,12 +27,13 @@ function App() {
   };
 
   useEffect(() => {
+    setShowSpinner(true);
     const getApiData = async () => {
       const apiData = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=London&appid=3f45dd007bd05f80d901ed1cae04d0ba`
       );
       const response = await apiData.json();
-      console.log(response);
+      console.log(response.cod);
       setApiResData({
         city: response.name + ", " + response.sys.country,
         temp: convertTemp(response.main.temp),
@@ -44,33 +47,41 @@ function App() {
       });
       setDataReceived(true);
     };
-    getApiData();
+    try {
+      getApiData();
+    } catch (err) {
+      console.log("Service Unavailable");
+    } finally {
+      setShowSpinner(false);
+    }
   }, []);
 
   const getWeatherDetails = async (cityname) => {
-    setDataReceived(false);
+    setShowSpinner(true);
     const city_name = cityname === "" ? "London" : cityname;
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=3f45dd007bd05f80d901ed1cae04d0ba`
-    )
-      .then((response) => response.json())
-      .then((responseData) => {
-        setApiResData({
-          city: responseData.name + ", " + responseData.sys.country,
-          temp: convertTemp(responseData.main.temp),
-          feelsLike: convertTemp(responseData.main.feels_like),
-          minTemp: convertTemp(responseData.main.temp_min),
-          maxTemp: convertTemp(responseData.main.temp_max),
-          windSpeed: responseData.wind.speed,
-          windDir: convertWindDirection(responseData.wind.deg),
-          weatherType: responseData.weather[0].main,
-          icon: responseData.weather[0].icon,
-        });
-        setDataReceived(true);
-      })
-      .catch((err) => {
-        console.log(err);
+    try {
+      const apiData = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=3f45dd007bd05f80d901ed1cae04d0ba`
+      );
+      const responseData = await apiData.json();
+      setApiResData({
+        city: responseData.name + ", " + responseData.sys.country,
+        temp: convertTemp(responseData.main.temp),
+        feelsLike: convertTemp(responseData.main.feels_like),
+        minTemp: convertTemp(responseData.main.temp_min),
+        maxTemp: convertTemp(responseData.main.temp_max),
+        windSpeed: responseData.wind.speed,
+        windDir: convertWindDirection(responseData.wind.deg),
+        weatherType: responseData.weather[0].main,
+        icon: responseData.weather[0].icon,
       });
+      setDataReceived(true);
+    } catch (err) {
+      setDataReceived(false);
+      console.log("Data not found for this location");
+    } finally {
+      setShowSpinner(false);
+    }
   };
 
   return (
@@ -80,12 +91,14 @@ function App() {
       </h1>
       <div className="glass">
         <SearchBar loadWeather={(event) => getWeatherDetails(event)} />
-        {dataReceived === true ? (
-          <WeatherCard apiData={apiResData} />
-        ) : (
+        {showSpinner ? (
           <div className="spinner">
             <Spinner />
           </div>
+        ) : dataReceived ? (
+          <WeatherCard apiData={apiResData} />
+        ) : (
+          <NoResults />
         )}
       </div>
     </div>
